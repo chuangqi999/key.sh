@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# 自动移除 Windows CRLF 换行符
+if grep -q $'\r' "$0"; then
+    echo "⚠️ 检测到 Windows CRLF 换行符，正在自动修复..."
+    sed -i 's/\r$//' "$0"
+    echo "✅ 修复完成，请重新运行脚本。"
+    exit 0
+fi
+
 echo "============================"
 echo "      SSH Key Installer"
 echo "        Debian/Ubuntu"
